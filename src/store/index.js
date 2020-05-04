@@ -11,12 +11,6 @@ export default function(/* { ssrContext } */) {
     },
     strict: process.env.DEV
   });
-  if (process.env.DEV && module.hot) {
-    module.hot.accept(["./sales"], () => {
-      const newSales = require("./sales").default;
-      Store.hotUpdate({ modules: { sales: newSales } });
-    });
-  }
 
   return Store;
 }
