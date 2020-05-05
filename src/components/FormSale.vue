@@ -5,16 +5,11 @@
         <div class="text-h6 row">
           <span>{{formTitle}}</span>
           <q-space />
-          <span>{{ saleEdited.date}}</span>
+          <span>{{ sale.date}}</span>
         </div>
-        <q-input
-          outlined
-          v-model="saleEdited.client"
-          label="Cliente"
-          :readonly="editMode && 'readonly'"
-        />
-        <ItemList :items="saleEdited.windows" typeItem="window" />
-        <ItemList :items="saleEdited.doors" typeItem="door" />
+        <q-input outlined v-model="client" label="Cliente" :readonly="editMode && true" />
+        <ItemList :items="sale.windows" typeItem="window" />
+        <ItemList :items="sale.doors" typeItem="door" />
       </q-card-section>
       <q-card-actions align="center">
         <q-btn label="Guardar" type="submit" color="primary" />
@@ -26,38 +21,49 @@
 
 <script>
 import ItemList from "../components/ItemList";
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
+import { deleteWindow } from "../store/sales/mutations";
 
 export default {
   components: { ItemList },
   data() {
     return {
-      indexSale: -1
+      formTitle: ""
     };
   },
   computed: {
-    formTitle() {
-      if (this.editMode) {
-        return "Modificando Venta";
-      } else {
-        return "Nueva Venta";
+    ...mapState("sales", ["editMode", "sale"]),
+    client: {
+      get() {
+        return this.sale.client;
+      },
+      set(value) {
+        this.updateClient(value);
       }
-    },
-    ...mapState("sales", ["saleEdited", "editMode"])
+    }
+  },
+  watch: {
+    editMode(val) {
+      if (val) {
+        this.formTitle = "Modificando Venta";
+      } else {
+        this.formTitle = "Nueva Venta";
+      }
+    }
   },
   methods: {
-    ...mapMutations("sales", ["setSalesDefault", "setSaleDefault"]),
-    ...mapActions("sales", ["saveSale", "resetSale"]),
     onSubmit() {
       const typeDialog = "submit";
       if (this.editMode) {
         this.dialog(
+          "Guardar Venta",
           "¿Desea guardar las modificaciones hechas a la venta?",
           "Se modifico correctamente",
           typeDialog
         );
       } else {
         this.dialog(
+          "Guardar Venta",
           "¿Desea guardar el registro de la venta?",
           "Se agrego correctamente",
           typeDialog
@@ -66,29 +72,32 @@ export default {
     },
     onReset() {
       this.dialog(
+        "Limpiar formulario",
         "¿Deseas limpiar el registro actual?",
         "Se limpio el registro correctamente",
         "reset"
       );
     },
-    dialog(msgDialog, msgNotify, typeDialog) {
+    dialog(titleDialog, msgDialog, msgNotify, typeDialog) {
       this.$q
         .dialog({
-          title: "Guardar",
+          title: titleDialog,
           message: msgDialog,
           cancel: true,
           persistent: true
         })
         .onOk(() => {
           typeDialog == "submit" && this.saveSale();
-          typeDialog == "reset" && this.resetSale();
+          this.resetSale();
           this.$q.notify({
             type: "positive",
             message: msgNotify,
             timeout: 2000
           });
         });
-    }
+    },
+    ...mapActions("sales", ["saveSale", "resetSale"]),
+    ...mapMutations("sales", ["updateClient"])
   }
 };
 </script>

@@ -46,7 +46,7 @@
 <script>
 import FormItem from "../components/FormItem";
 
-import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   props: {
     items: {
@@ -74,12 +74,11 @@ export default {
         return "Ventana";
       }
     },
-    ...mapGetters("sales", ["subtotalSale", "labelFeature", ""]),
+    ...mapGetters("sales", ["subtotalSale", "labelFeature"]),
     ...mapState("sales", ["editMode"])
   },
   methods: {
-    // ...mapMutations("sales", ["resetWindow", "resetWindow"]),
-    ...mapActions("sales", ["deleteItem", "addItem"]),
+    ...mapActions("sales", ["deleteItem"]),
     onAdd() {
       this.$q
         .dialog({
@@ -90,7 +89,6 @@ export default {
           type: this.typeItem
         })
         .onOk(data => {
-          this.addItem({ item: data, type: this.typeItem });
           this.$q.notify({
             message: "Item agregado con exito",
             type: "positive",

@@ -14,14 +14,10 @@
 <script>
 import SalesTable from "../components/SalesTable";
 import FormSale from "../components/FormSale";
-import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "PageSale",
-  components: { SalesTable, FormSale },
-
-  methods: {
-    ...mapMutations("sales", [])
-  }
+  components: { SalesTable, FormSale }
 };
 </script>

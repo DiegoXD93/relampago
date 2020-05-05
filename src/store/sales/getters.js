@@ -1,3 +1,11 @@
+export const getIndexSale = state => sale => {
+  return state.sales.indexOf(sale);
+};
+
+export const getSaleEdited = state => {
+  return state.sales[state.index];
+};
+
 export const totalSale = (state, getters) => sale => {
   return getters.subtotalSale(sale.windows) + getters.subtotalSale(sale.doors);
 };
@@ -33,7 +41,4 @@ export const labelFeature = state => (item, type) => {
     return feature;
   }
 };
-
-export const getIndexSale = state => sale => {
-  return state.salesEdited.indexOf(sale);
-};
+////////////////////////////////////////////////////////////////

@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
   props: {
     text: "",
@@ -42,7 +42,7 @@ export default {
       item: {
         height: 110,
         width: 180,
-        features: ["handle"],
+        features: [],
         price: 120,
         quantity: 2
       }
@@ -61,6 +61,7 @@ export default {
     })
   },
   methods: {
+    ...mapActions("sales", ["addItem"]),
     show() {
       this.$refs.dialogItem.show();
     },
@@ -71,7 +72,8 @@ export default {
       this.$emit("hide");
     },
     onOkClick() {
-      this.$emit("ok", this.item);
+      this.addItem({ item: this.item, type: this.type });
+      this.$emit("ok");
       this.hide();
     },
     onCancelClick() {

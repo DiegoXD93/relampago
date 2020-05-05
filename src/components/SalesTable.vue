@@ -71,12 +71,7 @@ export default {
     };
   },
   computed: {
-    ...mapState({
-      sales(state) {
-        return state.sales.salesEdited;
-      }
-    }),
-    // ...mapState("sales", ["salesEdited"]),
+    ...mapState("sales", ["sales"]),
     ...mapGetters("sales", ["totalSale"])
   },
   methods: {
