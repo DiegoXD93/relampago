@@ -6,7 +6,6 @@
     </q-page-container>
   </q-layout>
 </template>
-
 <script>
 import EssentialLink from "components/EssentialLink";
 import Menu from "components/Menu";
@@ -21,16 +20,9 @@ export default {
 
   data() {
     return {
-      leftDrawerOpen: false,
-      essentialLinks: [
-        {
-          title: "Costo del Pedido",
-          caption: "Hoja de calculo",
-          icon: "shopping_cart",
-          link: "#"
-        }
-      ]
+      leftDrawerOpen: false
     };
   }
 };
+
 </script>

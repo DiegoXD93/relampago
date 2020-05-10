@@ -18,11 +18,10 @@
     </q-card>
   </q-form>
 </template>
-
 <script>
 import ItemList from "../components/ItemList";
-import { mapState, mapMutations, mapActions } from "vuex";
 import { deleteWindow } from "../store/sales/mutations";
+import { mapActions, mapState, mapMutations } from "vuex";
 
 export default {
   components: { ItemList },
@@ -52,6 +51,8 @@ export default {
     }
   },
   methods: {
+    ...mapActions("sales", ["resetSale"]),
+    ...mapMutations("sales", ["updateClient", 'guardar']),
     onSubmit() {
       const typeDialog = "submit";
       if (this.editMode) {
@@ -87,7 +88,7 @@ export default {
           persistent: true
         })
         .onOk(() => {
-          typeDialog == "submit" && this.saveSale();
+          typeDialog == "submit" && this.guardar(this.sale);
           this.resetSale();
           this.$q.notify({
             type: "positive",
@@ -95,12 +96,10 @@ export default {
             timeout: 2000
           });
         });
-    },
-    ...mapActions("sales", ["saveSale", "resetSale"]),
-    ...mapMutations("sales", ["updateClient"])
+    }
   }
 };
-</script>
 
+</script>
 <style lang="scss" scoped>
 </style>

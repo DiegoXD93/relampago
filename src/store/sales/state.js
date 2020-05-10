@@ -5,8 +5,7 @@ export default function() {
     sale: {
       client: "Maria Cardenas",
       date: hoy,
-      windows: [
-        {
+      windows: [{
           height: 120,
           width: 180,
           features: ["grating", "handle"],
@@ -28,141 +27,51 @@ export default function() {
           quantity: 1
         }
       ],
-      doors: [
-        {
-          height: 90,
+      doors: [{
+        height: 90,
+        width: 180,
+        features: [],
+        price: 120,
+        quantity: 1
+      }]
+    },
+
+    ///////////////////////////////////////////////////////////////
+    sales: [{
+      client: "Maria Cardenas",
+      date: hoy,
+      windows: [{
+          height: 120,
           width: 180,
-          features: [],
+          features: ["grating", "handle"],
+          price: 120,
+          quantity: 4
+        },
+        {
+          height: 120,
+          width: 150,
+          features: ["order"],
+          price: 120,
+          quantity: 1
+        },
+        {
+          height: 120,
+          width: 150,
+          features: ["bath"],
           price: 120,
           quantity: 1
         }
-      ]
-    },
-    sales: [
-      {
-        client: "Jose Orozco",
-        date: hoy,
-        windows: [
-          {
-            height: 110,
-            width: 180,
-            features: ["handle"],
-            price: 120,
-            quantity: 2
-          },
-          {
-            height: 120,
-            width: 150,
-            features: ["order", "handle"],
-            price: 120,
-            quantity: 1
-          }
-        ],
-        doors: [
-          {
-            height: 90,
-            width: 180,
-            features: [],
-            price: 120,
-            quantity: 1
-          }
-        ]
-      },
-      {
-        client: "Carlos Maldonado",
-        date: hoy,
-        windows: [
-          {
-            height: 120,
-            width: 180,
-            features: ["grating", "handle"],
-            price: 120,
-            quantity: 4
-          },
-          {
-            height: 120,
-            width: 150,
-            features: ["order", "handle"],
-            price: 120,
-            quantity: 1
-          }
-        ],
-        doors: [
-          {
-            height: 90,
-            width: 180,
-            features: [],
-            price: 120,
-            quantity: 1
-          }
-        ]
-      },
-      {
-        client: "Maria Cardenas",
-        date: hoy,
-        windows: [
-          {
-            height: 120,
-            width: 180,
-            features: ["grating", "handle"],
-            price: 120,
-            quantity: 4
-          },
-          {
-            height: 120,
-            width: 150,
-            features: ["order"],
-            price: 120,
-            quantity: 1
-          },
-          {
-            height: 120,
-            width: 150,
-            features: ["bath"],
-            price: 120,
-            quantity: 1
-          }
-        ],
-        doors: [
-          {
-            height: 90,
-            width: 180,
-            features: [],
-            price: 120,
-            quantity: 1
-          }
-        ]
-      },
-      {
-        client: "jose Maldonado",
-        date: hoy,
-        windows: [
-          {
-            height: 120,
-            width: 180,
-            features: ["grating", "handle"],
-            price: 120,
-            quantity: 4
-          },
-          {
-            height: 120,
-            width: 150,
-            features: ["order", "handle"],
-            price: 120,
-            quantity: 1
-          }
-        ],
-        doors: [
-          {
-            height: 90,
-            width: 180,
-            features: ["order", "bath"],
-            price: 120,
-            quantity: 1
-          }
-        ]
-      }
-    ],
+      ],
+      doors: [{
+        height: 90,
+        width: 180,
+        features: [],
+        price: 120,
+        quantity: 1
+      }]
+    }],
+    ///////////////////////////////////////////////////////////////
+
     windowFeatures: [
       { label: "Mandado", value: "order" },
       { label: "Corrediza", value: "sliding" },

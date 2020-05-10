@@ -6,12 +6,12 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
 
-module.exports = function(/* ctx */) {
+module.exports = function( /* ctx */ ) {
   return {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
-    boot: ["axios"],
+    boot: ["axios", "firebase", "router-auth"],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: ["app.scss"],
@@ -27,7 +27,8 @@ module.exports = function(/* ctx */) {
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
       "roboto-font", // optional, you are not bound to it
-      "material-icons" // optional, you are not bound to it
+      "material-icons", // optional, you are not bound to it
+      'fontawesome-v5',
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
@@ -102,8 +103,7 @@ module.exports = function(/* ctx */) {
         orientation: "portrait",
         background_color: "#ffffff",
         theme_color: "#027be3",
-        icons: [
-          {
+        icons: [{
             src: "statics/icons/icon-128x128.png",
             sizes: "128x128",
             type: "image/png"
@@ -167,7 +167,7 @@ module.exports = function(/* ctx */) {
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
       nodeIntegration: true,
 
-      extendWebpack(/* cfg */) {
+      extendWebpack( /* cfg */ ) {
         // do something with Electron main process Webpack cfg
         // chainWebpack also available besides this extendWebpack
       }

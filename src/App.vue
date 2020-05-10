@@ -3,9 +3,16 @@
     <router-view />
   </div>
 </template>
-
-<script >
+<script>
+import { mapActions } from "vuex";
 export default {
-  name: 'App'
-}
+  name: "App",
+  methods: {
+    ...mapActions("auth", ["handleAuthStateChange"]),
+  },
+  mounted() {
+    this.handleAuthStateChange();
+  }
+};
+
 </script>
